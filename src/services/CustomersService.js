@@ -10,7 +10,7 @@ export async function apiGetCustomerDashboardData(data) {
 
 export async function apiGetCustomerList(data) {
     return ApiService.fetchData({
-        url: '/customers',
+        url: '/sales/products',
         method: 'post',
         data
     })

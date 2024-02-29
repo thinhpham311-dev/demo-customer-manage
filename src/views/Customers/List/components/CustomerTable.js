@@ -49,8 +49,8 @@ const ActionColumn = ({ row }) => {
 const CustomerTable = () => {
 
 	const dispatch = useDispatch()
-	// const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.customerListSlice.data.tableData)
-	// const filterData = useSelector((state) => state.customerListSlice.data.filterData)
+	const { pageIndex, pageSize, sort, query, total } = useSelector((state) => state.customerListSlice.data.tableData)
+	const filterData = useSelector((state) => state.customerListSlice.data.filterData)
 	const loading = useSelector((state) => state.customerListSlice.data.loading)
 	const data = useSelector((state) => state.customerListSlice.data.customerList)
 
@@ -58,18 +58,14 @@ const CustomerTable = () => {
 	useEffect(() => {
 		fetchData()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	},
-		// [pageIndex, pageSize, sort]
-	)
+	}, [pageIndex, pageSize, sort])
 
-	// const tableData = useMemo(() =>
-	// 	({ pageIndex, pageSize, sort, query, total }),
-	// 	[pageIndex, pageSize, sort, query, total])
+	const tableData = useMemo(() =>
+		({ pageIndex, pageSize, sort, query, total }),
+		[pageIndex, pageSize, sort, query, total])
 
 	const fetchData = () => {
-		dispatch(getCustomers(
-			// { pageIndex, pageSize, sort, query, filterData }
-		))
+		dispatch(getCustomers({ pageIndex, pageSize, sort, query, filterData }))
 	}
 
 	const columns = useMemo(() => [
@@ -113,25 +109,25 @@ const CustomerTable = () => {
 		},
 	], [])
 
-	// const onPaginationChange = page => {
-	// 	const newTableData = cloneDeep(tableData)
-	// 	newTableData.pageIndex = page
-	// 	dispatch(setTableData(newTableData))
-	// }
+	const onPaginationChange = page => {
+		const newTableData = cloneDeep(tableData)
+		newTableData.pageIndex = page
+		dispatch(setTableData(newTableData))
+	}
 
-	// const onSelectChange = value => {
-	// 	const newTableData = cloneDeep(tableData)
-	// 	newTableData.pageSize = Number(value)
-	// 	newTableData.pageIndex = 1
-	// 	dispatch(setTableData(newTableData))
-	// }
+	const onSelectChange = value => {
+		const newTableData = cloneDeep(tableData)
+		newTableData.pageSize = Number(value)
+		newTableData.pageIndex = 1
+		dispatch(setTableData(newTableData))
+	}
 
-	// const onSort = (sort, sortingColumn) => {
-	// 	const newTableData = cloneDeep(tableData)
-	// 	newTableData.sort = sort
-	// 	dispatch(setTableData(newTableData))
-	// 	dispatch(setSortedColumn(sortingColumn))
-	// }
+	const onSort = (sort, sortingColumn) => {
+		const newTableData = cloneDeep(tableData)
+		newTableData.sort = sort
+		dispatch(setTableData(newTableData))
+		dispatch(setSortedColumn(sortingColumn))
+	}
 
 	return (
 		<>
@@ -141,10 +137,10 @@ const CustomerTable = () => {
 				skeletonAvatarColumns={[0]}
 				skeletonAvatarProps={{ className: 'rounded-md' }}
 				loading={loading}
-			// pagingData={tableData}
-			// onPaginationChange={onPaginationChange}
-			// onSelectChange={onSelectChange}
-			// onSort={onSort}
+				pagingData={tableData}
+				onPaginationChange={onPaginationChange}
+				onSelectChange={onSelectChange}
+				onSort={onSort}
 			/>
 			<CustomerDeleteConfirmation />
 		</>
