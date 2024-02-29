@@ -1,14 +1,11 @@
 
 import { createServer } from 'miragejs'
 import appConfig from 'configs/app.config'
-import { notificationListData, searchQueryPoolData } from './data/commonData'
-import { usersData, userDetailData } from './data/usersData'
-import { productsData, salesDashboardData } from './data/salesData'
+import { customersData, customersDashboardData } from './data/customersData'
 import { signInUserData } from './data/authData'
 
 import {
-    commonFakeApi,
-    salesFakeApi,
+    customersFakeApi,
     authFakeApi,
 } from './fakeApi'
 
@@ -19,13 +16,9 @@ export default function mockServer({ environment = 'test' }) {
         environment,
         seeds(server) {
             server.db.loadData({
-                notificationListData,
-                searchQueryPoolData,
-                usersData,
-                userDetailData,
-                productsData,
+                customersData,
                 signInUserData,
-                salesDashboardData,
+                customersDashboardData,
             })
         },
         routes() {
@@ -36,9 +29,7 @@ export default function mockServer({ environment = 'test' }) {
                 return isExternal
             })
             this.passthrough()
-
-            commonFakeApi(this, apiPrefix)
-            salesFakeApi(this, apiPrefix)
+            customersFakeApi(this, apiPrefix)
             authFakeApi(this, apiPrefix)
         },
     })

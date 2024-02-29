@@ -2,7 +2,7 @@ import React from 'react'
 import ProductForm from 'views/Customers/Form'
 import { toast, Notification } from 'components/ui'
 import { useNavigate } from 'react-router-dom'
-import { apiCreateCustomer } from 'services/SalesService'
+import { apiCreateCustomer } from 'services/CustomersService'
 
 const ProductNew = () => {
 

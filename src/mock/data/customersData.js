@@ -1,4 +1,4 @@
-export const salesDashboardData = {
+export const customersDashboardData = {
     statisticData: {
         revenue: {
             value: 21827.13,
@@ -37,7 +37,7 @@ export const salesDashboardData = {
     },
 }
 
-export const productsData = [
+export const customersData = [
     {
         id: '12',
         name: 'Luminaire Giotto Headphones',

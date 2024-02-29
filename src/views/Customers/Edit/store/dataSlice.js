@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetCustomer, apiPutCustomer, apiDeleteCustomer } from 'services/SalesService'
+import { apiGetCustomer, apiPutCustomer, apiDeleteCustomer } from 'services/CustomersService'
 
 export const getCustomer = createAsyncThunk('customerEdit/data/getCustomer', async (data) => {
     const response = await apiGetCustomer(data)

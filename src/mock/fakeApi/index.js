@@ -1,3 +1,2 @@
-export { default as commonFakeApi } from './commonFakeApi'
-export { default as salesFakeApi } from './salesFakeApi'
+export { default as customersFakeApi } from './customersFakeApi'
 export { default as authFakeApi } from './authFakeApi'

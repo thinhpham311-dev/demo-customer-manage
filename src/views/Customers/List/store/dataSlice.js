@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { apiGetCustomerList, apiDeleteCustomer } from 'services/SalesService'
+import { apiGetCustomerList, apiDeleteCustomer } from 'services/CustomersService'
 
 export const getCustomers = createAsyncThunk('customerListSlice/data/getCustomers', async (data) => {
-    const response = await apiGetCustomerList(data)
+    const response = await apiGetCustomerList()
     return response.data
 })
 
