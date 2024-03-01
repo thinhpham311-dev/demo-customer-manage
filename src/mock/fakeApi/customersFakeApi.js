@@ -17,7 +17,7 @@ export default function customersFakeApi(server, apiPrefix) {
         let data = sanitizeProducts
         let total = products.length
 
-        if ((key === 'category' || key === 'name') && order) {
+        if ((key === 'name' || key === 'product' || key === 'email' || key === 'order') && order) {
             data.sort(sortBy(key, order === 'desc', (a) => a.toUpperCase()))
         } else {
             data.sort(sortBy(key, order === 'desc', parseInt))
